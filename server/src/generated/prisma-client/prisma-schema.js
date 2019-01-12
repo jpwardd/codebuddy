@@ -353,6 +353,7 @@ type Subscription {
 type User {
   id: ID!
   name: String!
+  username: String!
   email: String!
   password: String!
   links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link!]
@@ -367,6 +368,7 @@ type UserConnection {
 
 input UserCreateInput {
   name: String!
+  username: String!
   email: String!
   password: String!
   links: LinkCreateManyWithoutPostedByInput
@@ -385,6 +387,7 @@ input UserCreateOneWithoutVotesInput {
 
 input UserCreateWithoutLinksInput {
   name: String!
+  username: String!
   email: String!
   password: String!
   votes: VoteCreateManyWithoutUserInput
@@ -392,6 +395,7 @@ input UserCreateWithoutLinksInput {
 
 input UserCreateWithoutVotesInput {
   name: String!
+  username: String!
   email: String!
   password: String!
   links: LinkCreateManyWithoutPostedByInput
@@ -407,6 +411,8 @@ enum UserOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  username_ASC
+  username_DESC
   email_ASC
   email_DESC
   password_ASC
@@ -420,6 +426,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   name: String!
+  username: String!
   email: String!
   password: String!
 }
@@ -444,6 +451,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   name: String
+  username: String
   email: String
   password: String
   links: LinkUpdateManyWithoutPostedByInput
@@ -452,6 +460,7 @@ input UserUpdateInput {
 
 input UserUpdateManyMutationInput {
   name: String
+  username: String
   email: String
   password: String
 }
@@ -474,6 +483,7 @@ input UserUpdateOneWithoutLinksInput {
 
 input UserUpdateWithoutLinksDataInput {
   name: String
+  username: String
   email: String
   password: String
   votes: VoteUpdateManyWithoutUserInput
@@ -481,6 +491,7 @@ input UserUpdateWithoutLinksDataInput {
 
 input UserUpdateWithoutVotesDataInput {
   name: String
+  username: String
   email: String
   password: String
   links: LinkUpdateManyWithoutPostedByInput
@@ -525,6 +536,20 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
   email: String
   email_not: String
   email_in: [String!]
@@ -566,6 +591,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  username: String
   email: String
 }
 

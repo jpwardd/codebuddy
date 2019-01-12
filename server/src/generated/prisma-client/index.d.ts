@@ -211,6 +211,8 @@ export type UserOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "username_ASC"
+  | "username_DESC"
   | "email_ASC"
   | "email_DESC"
   | "password_ASC"
@@ -365,6 +367,7 @@ export interface UserSubscriptionWhereInput {
 
 export interface UserCreateWithoutVotesInput {
   name: String;
+  username: String;
   email: String;
   password: String;
   links?: LinkCreateManyWithoutPostedByInput;
@@ -382,6 +385,7 @@ export interface LinkCreateManyWithoutPostedByInput {
 
 export interface UserUpdateManyMutationInput {
   name?: String;
+  username?: String;
   email?: String;
   password?: String;
 }
@@ -394,6 +398,7 @@ export interface LinkCreateWithoutPostedByInput {
 
 export interface UserUpdateInput {
   name?: String;
+  username?: String;
   email?: String;
   password?: String;
   links?: LinkUpdateManyWithoutPostedByInput;
@@ -474,6 +479,7 @@ export type VoteWhereUniqueInput = AtLeastOne<{
 
 export interface UserUpdateWithoutLinksDataInput {
   name?: String;
+  username?: String;
   email?: String;
   password?: String;
   votes?: VoteUpdateManyWithoutUserInput;
@@ -532,6 +538,20 @@ export interface UserWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  username?: String;
+  username_not?: String;
+  username_in?: String[] | String;
+  username_not_in?: String[] | String;
+  username_lt?: String;
+  username_lte?: String;
+  username_gt?: String;
+  username_gte?: String;
+  username_contains?: String;
+  username_not_contains?: String;
+  username_starts_with?: String;
+  username_not_starts_with?: String;
+  username_ends_with?: String;
+  username_not_ends_with?: String;
   email?: String;
   email_not?: String;
   email_in?: String[] | String;
@@ -622,6 +642,7 @@ export interface LinkUpsertWithoutVotesInput {
 
 export interface UserCreateInput {
   name: String;
+  username: String;
   email: String;
   password: String;
   links?: LinkCreateManyWithoutPostedByInput;
@@ -730,6 +751,7 @@ export interface LinkUpdateManyWithoutPostedByInput {
 
 export interface UserUpdateWithoutVotesDataInput {
   name?: String;
+  username?: String;
   email?: String;
   password?: String;
   links?: LinkUpdateManyWithoutPostedByInput;
@@ -753,6 +775,7 @@ export interface LinkUpdateManyWithWhereNestedInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  username?: String;
   email?: String;
 }>;
 
@@ -764,6 +787,7 @@ export interface LinkCreateWithoutVotesInput {
 
 export interface UserCreateWithoutLinksInput {
   name: String;
+  username: String;
   email: String;
   password: String;
   votes?: VoteCreateManyWithoutUserInput;
@@ -834,6 +858,7 @@ export interface LinkConnectionSubscription
 export interface UserPreviousValues {
   id: ID_Output;
   name: String;
+  username: String;
   email: String;
   password: String;
 }
@@ -843,6 +868,7 @@ export interface UserPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  username: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
 }
@@ -852,6 +878,7 @@ export interface UserPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
 }
@@ -875,6 +902,7 @@ export interface AggregateLinkSubscription
 export interface User {
   id: ID_Output;
   name: String;
+  username: String;
   email: String;
   password: String;
 }
@@ -882,6 +910,7 @@ export interface User {
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  username: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
   links: <T = FragmentableArray<Link>>(
@@ -913,6 +942,7 @@ export interface UserSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   links: <T = Promise<AsyncIterator<LinkSubscription>>>(
