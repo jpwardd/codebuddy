@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Ranks from './Ranks'
 
-
 const LeftNavContainer = styled.div`
   margin-top: 10px;
   padding: 8px;

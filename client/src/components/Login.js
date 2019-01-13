@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import { AUTH_TOKEN } from '../constants'
-import { FormField, TextInput } from 'grommet';
+import { Box, FormField, TextInput, Image } from 'grommet';
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
+
 
 
 
@@ -25,14 +28,26 @@ const SIGNUP_MUTATION = gql `
 `
 
 const LoginContainer = styled.div`
-  border: 3px solid black;
-  margin: 0 auto;
+  justify-content: center;
+  max-width: 300px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5vh;
+  flex-grow: 1;
+  border-radius: 10px;
+  background: #173449;
+  border-bottom: 15px solid #21D581;
+`
+const InputContainer = styled.div`
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
 `
 
 
 class Login extends Component {
   state = {
-    login: true, // switch between Login and SignUp
+    login: false, // switch between Login and SignUp
     email: '',
     password: '',
     name: '',
@@ -48,10 +63,11 @@ class Login extends Component {
   render() {
     const { login, email, password, name, username } = this.state
     return (
-
-      <div>
-        <h4>{login ? 'Login' : 'Sign Up'}</h4>
-        <div item>
+      <Box responsive={true} justify="start" animation="slideUp" align="center" basis="large" fill="horizontal">
+        <h1>codebuddy</h1>
+      <LoginContainer>
+      <InputContainer>
+        <div>
           {!login && (
           <Fragment>
             <FormField label="name">
@@ -106,13 +122,16 @@ class Login extends Component {
             )}
             </Mutation>
             <div
-              className="pointer button"
               onClick={() => this.setState({ login: !login })}
             >
-              {login ? 'need to create an account?' : 'already have an account?'}
+              {
+                Login ? 'already have an account?' : 'need to create an account?'
+              }
             </div>
-            </div>
-          </div>
+        </div>
+      </InputContainer>
+          </LoginContainer>
+      </Box>
         )
       }
 
